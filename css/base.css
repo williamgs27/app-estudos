@@ -1,0 +1,245 @@
+/* ========================================
+   APP DE ESTUDOS
+======================================== */
+
+/* ---------- VARIÁVEIS ---------- */
+
+:root {
+    --roxo-400: #a78bfa;
+    --roxo-500: #8b5cf6;
+    --roxo-600: #7c3aed;
+    --roxo-700: #6d28d9;
+
+    --bg: #ffffff;
+    --superficie: #f8f7fc;
+    --superficie-hover: #f2eff9;
+
+    --texto: #1f1b2e;
+    --texto-suave: #6b6575;
+    --texto-fraco: #918b9c;
+
+    --borda: #e7e3ee;
+
+    --destaque: var(--roxo-600);
+    --destaque-suave: #ede9fe;
+
+    --sucesso: #16a34a;
+    --erro: #dc2626;
+    --aviso: #d97706;
+
+    --sombra-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --sombra-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+    --raio-sm: 8px;
+    --raio-md: 12px;
+    --raio-lg: 16px;
+
+    --nav-height: 68px;
+
+    --transicao: 0.2s ease;
+}
+
+
+/* ---------- TEMA ESCURO ---------- */
+
+:root[data-tema="escuro"] {
+    --bg: #111014;
+    --superficie: #1a181f;
+    --superficie-hover: #211e27;
+
+    --texto: #f4f1f7;
+    --texto-suave: #aaa4b3;
+    --texto-fraco: #77717f;
+
+    --borda: #302c35;
+
+    --destaque: #a78bfa;
+    --destaque-suave: #29213d;
+
+    --sombra-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --sombra-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background: var(--bg);
+    color: var(--texto);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.5;
+
+    transition:
+        background-color var(--transicao),
+        color var(--transicao);
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* ---------- ACESSIBILIDADE ---------- */
+
+:focus-visible {
+    outline: 2px solid var(--destaque);
+    outline-offset: 2px;
+}
+
+
+/* ---------- CONTAINER ---------- */
+
+.container {
+    width: min(100% - 32px, 1200px);
+    margin-inline: auto;
+}
+
+
+/* ---------- ÁREA PRINCIPAL ---------- */
+
+.app-main {
+    width: 100%;
+    min-height: 100vh;
+
+    padding:
+        24px
+        16px
+        calc(var(--nav-height) + 32px);
+}
+
+
+/* ---------- TÍTULOS ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.2;
+    color: var(--texto);
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.35rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+}
+
+p {
+    color: var(--texto-suave);
+}
+
+
+/* ---------- FORMULÁRIOS ---------- */
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 10px 12px;
+
+    background: var(--bg);
+    color: var(--texto);
+
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-md);
+
+    outline: none;
+
+    transition:
+        border-color var(--transicao),
+        box-shadow var(--transicao);
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--destaque);
+
+    box-shadow:
+        0 0 0 3px var(--destaque-suave);
+}
+
+::placeholder {
+    color: var(--texto-fraco);
+}
+
+
+/* ---------- DESKTOP ---------- */
+
+@media (min-width: 768px) {
+
+    .app-main {
+        padding:
+            32px
+            32px
+            40px;
+    }
+
+    .container {
+        width: min(100% - 48px, 1200px);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

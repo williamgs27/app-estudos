@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#7c3aed"
+    >
+
+    <title>Caderno · Estudos</title>
+
+    <script src="js/tema.js"></script>
+
+    <link
+        rel="stylesheet"
+        href="css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/componentes.css"
+    >
+
+</head>
+
+<body>
+
+<main class="app-main">
+
+    <div class="container">
+
+        <header class="page-header">
+
+            <div class="page-header-text">
+
+                <h1>Caderno</h1>
+
+                <p>
+                    Seus resumos organizados por assunto.
+                </p>
+
+            </div>
+
+            <button
+                class="btn-icone"
+                id="btn-tema"
+                aria-label="Alternar tema"
+            >
+                ◐
+            </button>
+
+        </header>
+
+
+        <!-- BUSCA -->
+
+        <section class="caderno-busca">
+
+            <div class="caderno-busca-input">
+
+                <span>⌕</span>
+
+                <input
+                    type="search"
+                    id="input-busca"
+                    placeholder="Buscar assunto..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTEÚDO -->
+
+        <section
+            id="lista-caderno"
+            class="lista-caderno"
+        >
+
+            <div class="loading">
+                Carregando...
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- NAVEGAÇÃO -->
+
+<nav class="bottom-nav">
+
+    <a
+        href="plano.html"
+        class="nav-item"
+    >
+        <span class="icone">▣</span>
+        <span>Plano</span>
+    </a>
+
+
+    <a
+        href="materias.html"
+        class="nav-item"
+    >
+        <span class="icone">▤</span>
+        <span>Matérias</span>
+    </a>
+
+
+    <a
+        href="caderno.html"
+        class="nav-item ativo"
+    >
+        <span class="icone">▤</span>
+        <span>Caderno</span>
+    </a>
+
+
+    <a
+        href="progresso.html"
+        class="nav-item"
+    >
+        <span class="icone">◔</span>
+        <span>Progresso</span>
+    </a>
+
+</nav>
+
+
+<!-- MODAL / EDITOR -->
+
+<div
+    class="modal-overlay"
+    id="modal-caderno"
+>
+
+    <div
+        class="modal modal-caderno"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <div class="modal-header">
+
+            <div class="editor-titulo-area">
+
+                <span
+                    id="editor-materia"
+                    class="editor-materia"
+                >
+                    Matéria
+                </span>
+
+                <h2 id="editor-assunto">
+                    Assunto
+                </h2>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn-icone"
+                id="btn-fechar-caderno"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- LISTA DE RESUMOS -->
+
+        <section
+            id="lista-resumos-assunto"
+            class="lista-resumos-assunto"
+        >
+        </section>
+
+
+        <!-- EDITOR -->
+
+        <section
+            id="editor-resumo-area"
+            class="editor-resumo-area"
+        >
+
+            <div class="editor-acoes-topo">
+
+                <button
+                    type="button"
+                    class="btn btn-secundario"
+                    id="btn-novo-resumo"
+                >
+                    + Novo resumo
+                </button>
+
+                <span
+                    id="status-salvamento"
+                    class="status-salvamento"
+                >
+                    Salvo
+                </span>
+
+            </div>
+
+
+            <form id="form-resumo">
+
+                <div class="form-group">
+
+                    <label for="titulo-resumo">
+                        Título
+                    </label>
+
+                    <input
+                        type="text"
+                        id="titulo-resumo"
+                        maxlength="150"
+                        placeholder="Ex.: Conceitos principais"
+                    >
+
+                </div>
+
+
+                <div class="editor-modos">
+
+                    <button
+                        type="button"
+                        class="editor-modo ativo"
+                        id="btn-modo-edicao"
+                    >
+                        ✎ Editar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="editor-modo"
+                        id="btn-modo-visualizacao"
+                    >
+                        ◉ Visualizar
+                    </button>
+
+                </div>
+
+
+                <div id="area-edicao">
+
+                    <div class="editor-toolbar">
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="titulo"
+                            title="Título"
+                        >
+                            H
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="negrito"
+                            title="Negrito"
+                        >
+                            <strong>B</strong>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="italico"
+                            title="Itálico"
+                        >
+                            <em>I</em>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="lista"
+                            title="Lista"
+                        >
+                            ☷
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="lista-numerada"
+                            title="Lista numerada"
+                        >
+                            1.
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="codigo"
+                            title="Código"
+                        >
+                            &lt;/&gt;
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="citacao"
+                            title="Citação"
+                        >
+                            “
+                        </button>
+
+                        <button
+                            type="button"
+                            class="editor-btn"
+                            data-comando="separador"
+                            title="Separador"
+                        >
+                            ─
+                        </button>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <textarea
+                            id="conteudo-resumo"
+                            class="textarea-caderno"
+                            placeholder="Escreva seu resumo aqui..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="menu-comandos"
+                    class="menu-comandos"
+                    style="display: none;"
+                >
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="titulo"
+                    >
+                        <span class="comando-icone">H</span>
+
+                        <span>
+                            <strong>Título</strong>
+                            <small>Adicionar um título</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="texto"
+                    >
+                        <span class="comando-icone">T</span>
+
+                        <span>
+                            <strong>Texto</strong>
+                            <small>Adicionar texto normal</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="lista"
+                    >
+                        <span class="comando-icone">☷</span>
+
+                        <span>
+                            <strong>Lista</strong>
+                            <small>Criar lista com marcadores</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="checklist"
+                    >
+                        <span class="comando-icone">☑</span>
+
+                        <span>
+                            <strong>Checklist</strong>
+                            <small>Criar tarefas</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="codigo"
+                    >
+                        <span class="comando-icone">&lt;/&gt;</span>
+
+                        <span>
+                            <strong>Código</strong>
+                            <small>Inserir bloco de código</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="citacao"
+                    >
+                        <span class="comando-icone">“</span>
+
+                        <span>
+                            <strong>Citação</strong>
+                            <small>Destacar uma citação</small>
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="comando-item"
+                        data-comando-slash="separador"
+                    >
+                        <span class="comando-icone">─</span>
+
+                        <span>
+                            <strong>Separador</strong>
+                            <small>Dividir seções</small>
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="area-visualizacao"
+                    class="area-visualizacao"
+                    style="display: none;"
+                >
+
+                    <article
+                        id="preview-resumo"
+                        class="preview-resumo"
+                    ></article>
+
+                </div>
+
+
+            
+
+
+                <div class="editor-rodape">
+
+                    <span
+                        id="contador-caracteres"
+                        class="contador-caracteres"
+                    >
+                        0 caracteres
+                    </span>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primario"
+                        id="btn-salvar-resumo"
+                    >
+                        Salvar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/caderno.js"></script>
+
+<script>
+    protegerPagina();
+</script>
+
+</body>
+
+</html>

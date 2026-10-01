@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#7c3aed"
+    >
+
+    <title>Plano · Estudos</title>
+
+    <script src="js/tema.js"></script>
+
+    <link
+        rel="stylesheet"
+        href="css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/componentes.css"
+    >
+</head>
+
+<body>
+
+<main class="app-main">
+
+    <div class="container">
+
+        <header class="page-header">
+
+            <div class="page-header-text">
+
+                <h1>Plano de estudos</h1>
+
+                <p>
+                    Organize o que você vai estudar.
+                </p>
+
+            </div>
+
+            <button
+                class="btn-icone"
+                id="btn-tema"
+                aria-label="Alternar tema"
+            >
+                ◐
+            </button>
+
+        </header>
+
+
+        <!-- CONTROLES -->
+
+        <section class="plano-controles">
+            <button class="btn btn-secundario" id="btn-hoje">
+                Hoje
+            </button>
+
+            <button class="btn btn-secundario" id="btn-replanejar">
+                🔄 Replanejar
+            </button>
+
+            <button class="btn btn-secundario" id="btn-gerar-plano">
+                ✨ Gerar plano
+            </button>
+
+            <button class="btn btn-primario" id="btn-adicionar-estudo">
+                + Adicionar estudo
+            </button>
+        </section>
+
+        <section class="semana-container">
+
+            <div class="semana-header">
+                <button
+                    type="button"
+                    class="btn-icone"
+                    id="btn-semana-anterior"
+                    aria-label="Semana anterior"
+                >
+                    ‹
+                </button>
+
+                <div class="semana-titulo">
+                    <strong id="semana-titulo">
+                        Semana
+                    </strong>
+
+                    <span id="semana-subtitulo">
+                        Carregando...
+                    </span>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-icone"
+                    id="btn-semana-proxima"
+                    aria-label="Próxima semana"
+                >
+                    ›
+                </button>
+            </div>
+
+            <div
+                class="semana-scroll"
+                id="semana-scroll"
+            >
+                <div
+                    class="semana-dias"
+                    id="semana-dias"
+                >
+                    <div class="loading">
+                        Carregando...
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="data-navegacao">
+
+
+        <!-- DATA ATUAL -->
+
+        <section class="data-navegacao">
+
+            <button
+                class="btn-icone"
+                id="btn-dia-anterior"
+                aria-label="Dia anterior"
+            >
+                ‹
+            </button>
+
+            <div class="data-atual">
+
+                <strong id="data-titulo">
+                    Hoje
+                </strong>
+
+                <span id="data-subtitulo">
+                    Carregando...
+                </span>
+
+            </div>
+
+            <button
+                class="btn-icone"
+                id="btn-proximo-dia"
+                aria-label="Próximo dia"
+            >
+                ›
+            </button>
+
+        </section>
+
+
+        <!-- RESUMO DO DIA -->
+
+        <section class="resumo-dia">
+
+            <div class="resumo-item">
+
+                <span class="resumo-valor" id="total-estudos">
+                    0
+                </span>
+
+                <span class="resumo-label">
+                    estudos
+                </span>
+
+            </div>
+
+            <div class="resumo-item">
+
+                <span class="resumo-valor" id="total-minutos">
+                    0
+                </span>
+
+                <span class="resumo-label">
+                    minutos
+                </span>
+
+            </div>
+
+            <div class="resumo-item resumo-atrasados">
+                <span
+                    class="resumo-valor"
+                    id="total-atrasados"
+                >
+                    0
+                </span>
+
+                <span class="resumo-label">
+                    atrasados
+                </span>
+            </div>
+
+            <div class="resumo-item">
+
+                <span class="resumo-valor" id="total-concluidos">
+                    0
+                </span>
+
+                <span class="resumo-label">
+                    concluídos
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- LISTA -->
+
+        <section id="lista-plano">
+
+            <div class="loading">
+                Carregando...
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- BOTÃO MOBILE -->
+
+<button
+    class="fab"
+    id="fab-adicionar"
+    aria-label="Adicionar estudo"
+>
+    +
+</button>
+
+
+<!-- NAVEGAÇÃO -->
+
+<nav class="bottom-nav">
+
+    <a
+        href="plano.html"
+        class="nav-item ativo"
+    >
+        <span class="icone">▣</span>
+        <span>Plano</span>
+    </a>
+
+    <a
+        href="materias.html"
+        class="nav-item"
+    >
+        <span class="icone">▤</span>
+        <span>Matérias</span>
+    </a>
+
+    <a
+        href="caderno.html"
+        class="nav-item"
+    >
+        <span class="icone">▤</span>
+        <span>Caderno</span>
+    </a>
+
+    <a
+        href="progresso.html"
+        class="nav-item"
+    >
+        <span class="icone">◔</span>
+        <span>Progresso</span>
+    </a>
+
+</nav>
+
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal-overlay">
+
+    <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-titulo"
+    >
+
+        <div class="modal-header">
+
+            <h2 id="modal-titulo">
+                Adicionar estudo
+            </h2>
+
+            <button
+                type="button"
+                class="btn-icone"
+                id="btn-fechar-modal"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="form-plano">
+
+            <!-- ASSUNTO -->
+
+            <div class="form-group">
+
+                <label for="assunto-select">
+                    Assunto
+                </label>
+
+                <select
+                    id="assunto-select"
+                    required
+                >
+                    <option value="">
+                        Selecione um assunto
+                    </option>
+                </select>
+
+            </div>
+
+
+            <!-- DATA -->
+
+            <div class="form-group">
+
+                <label for="data-estudo">
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="data-estudo"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DURAÇÃO -->
+
+            <div class="form-group">
+
+                <label for="duracao-estudo">
+                    Duração
+                </label>
+
+                <select
+                    id="duracao-estudo"
+                    required
+                >
+
+                    <option value="15">
+                        15 minutos
+                    </option>
+
+                    <option value="30">
+                        30 minutos
+                    </option>
+
+                    <option value="45">
+                        45 minutos
+                    </option>
+
+                    <option value="60">
+                        1 hora
+                    </option>
+
+                    <option value="90">
+                        1h30
+                    </option>
+
+                    <option value="120">
+                        2 horas
+                    </option>
+
+                    <option value="180">
+                        3 horas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primario"
+                id="btn-salvar-plano"
+                style="width: 100%;"
+            >
+                Adicionar ao plano
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="modal-overlay" id="modal-gerador">
+
+    <div class="modal" role="dialog" aria-modal="true">
+
+        <div class="modal-header">
+            <h2>Gerar plano automático</h2>
+
+            <button
+                type="button"
+                class="btn-icone"
+                id="btn-fechar-gerador"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+        </div>
+
+        <form id="form-gerador">
+
+            <div class="form-group">
+                <label for="gerador-inicio">
+                    Começar em
+                </label>
+
+                <input
+                    type="date"
+                    id="gerador-inicio"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="gerador-fim">
+                    Terminar em
+                </label>
+
+                <input
+                    type="date"
+                    id="gerador-fim"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Dias para estudar
+                </label>
+
+                <div class="dias-semana">
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="1"
+                            checked
+                        >
+                        <span>Seg</span>
+                    </label>
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="2"
+                            checked
+                        >
+                        <span>Ter</span>
+                    </label>
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="3"
+                            checked
+                        >
+                        <span>Qua</span>
+                    </label>
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="4"
+                            checked
+                        >
+                        <span>Qui</span>
+                    </label>
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="5"
+                            checked
+                        >
+                        <span>Sex</span>
+                    </label>
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="6"
+                        >
+                        <span>Sáb</span>
+                    </label>
+
+                    <label class="dia-checkbox">
+                        <input
+                            type="checkbox"
+                            value="0"
+                        >
+                        <span>Dom</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="gerador-minutos">
+                    Tempo disponível por dia
+                </label>
+
+                <select id="gerador-minutos">
+
+                    <option value="30">
+                        30 minutos
+                    </option>
+
+                    <option value="60">
+                        1 hora
+                    </option>
+
+                    <option value="90">
+                        1h30
+                    </option>
+
+                    <option value="120" selected>
+                        2 horas
+                    </option>
+
+                    <option value="150">
+                        2h30
+                    </option>
+
+                    <option value="180">
+                        3 horas
+                    </option>
+
+                    <option value="240">
+                        4 horas
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+
+                <label for="gerador-modo">
+                    Distribuição
+                </label>
+
+                <select id="gerador-modo">
+
+                    <option value="intercalado">
+                        Intercalar matérias
+                    </option>
+
+                    <option value="sequencial">
+                        Seguir a ordem dos assuntos
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="gerador-aviso">
+
+                <strong>Sua rotina</strong>
+
+                <p id="resumo-config-gerador">
+                    Carregando configuração...
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-secundario"
+                id="btn-salvar-config-gerador"
+                style="width: 100%; margin-bottom: 8px;"
+            >
+                Salvar configuração
+            </button>
+
+            <button
+                type="submit"
+                class="btn btn-primario"
+                id="btn-confirmar-gerador"
+                style="width: 100%;"
+            >
+                Gerar plano
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- SCRIPTS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/plano.js"></script>
+<script>protegerPagina();</script>
+
+</body>
+
+</html>

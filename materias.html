@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#7c3aed"
+    >
+
+    <title>Matérias · Estudos</title>
+
+    <script src="js/tema.js"></script>
+
+    <link
+        rel="stylesheet"
+        href="css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/componentes.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<main class="app-main">
+
+    <div class="container">
+
+
+        <!-- ==================================
+             CABEÇALHO
+        =================================== -->
+
+        <header class="page-header">
+
+            <div class="page-header-text">
+
+                <h1 id="titulo-pagina">
+                    Matérias
+                </h1>
+
+                <p id="subtitulo-pagina">
+                    Organize sua estrutura de estudos.
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn-icone"
+                id="btn-tema"
+                aria-label="Alternar tema"
+            >
+                ◐
+            </button>
+
+        </header>
+
+
+        <!-- ==================================
+             NAVEGAÇÃO
+        =================================== -->
+
+        <div
+            class="breadcrumb-estudos"
+            id="breadcrumb"
+        ></div>
+
+
+        <!-- ==================================
+             CONTEÚDO
+        =================================== -->
+
+        <section id="conteudo-materias">
+
+            <div class="loading">
+                Carregando...
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+<!-- ==================================
+     BOTÃO FLUTUANTE
+=================================== -->
+
+<button
+    class="fab"
+    id="btn-adicionar"
+    aria-label="Adicionar"
+>
+    +
+</button>
+
+
+<!-- ==================================
+     NAVEGAÇÃO
+=================================== -->
+
+<nav class="bottom-nav">
+
+    <a
+        href="plano.html"
+        class="nav-item"
+    >
+        <span class="icone">▣</span>
+        <span>Plano</span>
+    </a>
+
+
+    <a
+        href="materias.html"
+        class="nav-item ativo"
+    >
+        <span class="icone">▤</span>
+        <span>Matérias</span>
+    </a>
+
+
+    <a
+        href="caderno.html"
+        class="nav-item"
+    >
+        <span class="icone">▤</span>
+        <span>Caderno</span>
+    </a>
+
+
+    <a
+        href="progresso.html"
+        class="nav-item"
+    >
+        <span class="icone">◔</span>
+        <span>Progresso</span>
+    </a>
+
+</nav>
+
+
+<!-- ==================================
+     MODAL
+=================================== -->
+
+<div
+    class="modal-overlay"
+    id="modal-overlay"
+>
+
+    <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+    >
+
+        <div class="modal-header">
+
+            <h2 id="modal-titulo">
+                Adicionar
+            </h2>
+
+            <button
+                class="btn-icone"
+                id="btn-fechar-modal"
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="form-item">
+
+            <div class="form-group">
+
+                <label for="nome-item">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome-item"
+                    placeholder="Digite o nome"
+                    maxlength="100"
+                    required
+                >
+
+            </div>
+
+
+            <div
+                class="form-group"
+                id="campo-duracao"
+                style="display: none;"
+            >
+
+                <label for="duracao-item">
+                    Duração estimada
+                </label>
+
+                <select id="duracao-item">
+
+                    <option value="15">
+                        15 minutos
+                    </option>
+
+                    <option value="30">
+                        30 minutos
+                    </option>
+
+                    <option value="45">
+                        45 minutos
+                    </option>
+
+                    <option
+                        value="60"
+                        selected
+                    >
+                        60 minutos
+                    </option>
+
+                    <option value="90">
+                        90 minutos
+                    </option>
+
+                    <option value="120">
+                        2 horas
+                    </option>
+
+                    <option value="180">
+                        3 horas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                id="campo-cor"
+            >
+
+                <label for="cor-item">
+                    Cor
+                </label>
+
+                <input
+                    type="color"
+                    id="cor-item"
+                    value="#8b5cf6"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primario"
+                style="width: 100%;"
+            >
+                Adicionar
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================
+     SCRIPTS
+=================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/materias.js"></script>
+
+
+<script>
+
+    protegerPagina();
+
+</script>
+</body>
+</html>

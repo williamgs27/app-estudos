@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#7c3aed"
+    >
+
+    <meta
+        name="description"
+        content="Organize seus estudos de forma simples e inteligente."
+    >
+
+    <title>Meus Estudos</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+
+    <!-- =====================================
+         TEMA
+    ====================================== -->
+
+    <script src="js/tema.js"></script>
+
+
+    <!-- =====================================
+         CSS
+    ====================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/componentes.css"
+    >
+
+
+    <!-- =====================================
+         SUPABASE
+    ====================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+
+<body>
+
+    <main class="app-main">
+
+        <div class="container">
+
+            <section class="login-container">
+
+
+                <!-- CABEÇALHO -->
+
+                <div class="login-header">
+
+                    <div class="logo">
+
+                        <span class="logo-icone">
+                            ✦
+                        </span>
+
+                    </div>
+
+
+                    <h1>
+                        Meus Estudos
+                    </h1>
+
+
+                    <p>
+                        Organize seus estudos e acompanhe seu progresso.
+                    </p>
+
+                </div>
+
+
+                <!-- FORMULÁRIO -->
+
+                <form id="form-auth">
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="seu@email.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="senha">
+                            Senha
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="senha"
+                            placeholder="Sua senha"
+                            autocomplete="current-password"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primario"
+                        style="width: 100%;"
+                    >
+                        Entrar
+                    </button>
+
+                </form>
+
+
+                <!-- ALTERNAR LOGIN/CADASTRO -->
+
+                <div class="auth-alternativa">
+
+                    <span>
+                        Ainda não tem uma conta?
+                    </span>
+
+
+                    <button
+                        type="button"
+                        class="btn-link"
+                        id="btn-cadastro"
+                    >
+                        Criar conta
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
+</body>
+</html>

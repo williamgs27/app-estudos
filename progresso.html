@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#7c3aed">
+
+    <title>Progresso · Estudos</title>
+
+    <script src="js/tema.js"></script>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+</head>
+
+<body>
+
+<main class="app-main">
+
+    <div class="container">
+
+        <header class="page-header">
+
+            <div class="page-header-text">
+                <h1>Progresso</h1>
+                <p>Acompanhe sua evolução nos estudos.</p>
+            </div>
+
+            <button
+                class="btn-icone"
+                id="btn-tema"
+                aria-label="Alternar tema"
+            >
+                ◐
+            </button>
+
+        </header>
+
+
+        <!-- RESUMO GERAL -->
+
+        <section class="progresso-resumo">
+
+            <article class="progresso-metrica">
+                <span class="progresso-metrica-icone">📚</span>
+
+                <div>
+                    <strong id="total-blocos">0</strong>
+                    <span>blocos concluídos</span>
+                </div>
+            </article>
+
+
+            <article class="progresso-metrica">
+                <span class="progresso-metrica-icone">⏱️</span>
+
+                <div>
+                    <strong id="total-horas">0h</strong>
+                    <span>tempo estudado</span>
+                </div>
+            </article>
+
+
+            <article class="progresso-metrica">
+                <span class="progresso-metrica-icone">📈</span>
+
+                <div>
+                    <strong id="percentual-geral">0%</strong>
+                    <span>conclusão</span>
+                </div>
+            </article>
+
+
+            <article class="progresso-metrica">
+                <span class="progresso-metrica-icone">🔥</span>
+
+                <div>
+                    <strong id="sequencia-atual">0</strong>
+                    <span>dias seguidos</span>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- SEMANA -->
+
+        <section class="progresso-secao">
+
+            <div class="progresso-secao-header">
+                <div>
+                    <h2>Últimos 7 dias</h2>
+                    <p>Veja como foi sua rotina recente.</p>
+                </div>
+            </div>
+
+            <div
+                class="grafico-semana"
+                id="grafico-semana"
+            >
+                <div class="loading">
+                    Carregando...
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- RESUMO DA SEMANA -->
+
+        <section class="progresso-resumo-secundario">
+
+            <article>
+                <strong id="semana-blocos">0</strong>
+                <span>blocos</span>
+            </article>
+
+            <article>
+                <strong id="semana-minutos">0</strong>
+                <span>minutos</span>
+            </article>
+
+            <article>
+                <strong id="semana-concluidos">0</strong>
+                <span>concluídos</span>
+            </article>
+
+        </section>
+
+
+        <!-- MATÉRIAS -->
+
+        <section class="progresso-secao">
+
+            <div class="progresso-secao-header">
+
+                <div>
+                    <h2>Por matéria</h2>
+                    <p>Veja onde você mais avançou.</p>
+                </div>
+
+            </div>
+
+            <div
+                id="progresso-materias"
+                class="progresso-materias"
+            >
+                <div class="loading">
+                    Carregando...
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ATRASADOS -->
+
+        <section class="progresso-secao">
+
+            <div class="progresso-secao-header">
+
+                <div>
+                    <h2>Estudos atrasados</h2>
+                    <p>Assuntos pendentes que ficaram para trás.</p>
+                </div>
+
+            </div>
+
+            <div
+                id="progresso-atrasados"
+                class="progresso-atrasados"
+            >
+                <div class="loading">
+                    Carregando...
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- NAVEGAÇÃO -->
+
+<nav class="bottom-nav">
+
+    <a href="plano.html" class="nav-item">
+        <span class="icone">▣</span>
+        <span>Plano</span>
+    </a>
+
+    <a href="materias.html" class="nav-item">
+        <span class="icone">▤</span>
+        <span>Matérias</span>
+    </a>
+
+    <a href="caderno.html" class="nav-item">
+        <span class="icone">▤</span>
+        <span>Caderno</span>
+    </a>
+
+    <a href="progresso.html" class="nav-item ativo">
+        <span class="icone">◔</span>
+        <span>Progresso</span>
+    </a>
+
+</nav>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/progresso.js"></script>
+
+<script>
+    protegerPagina();
+</script>
+
+</body>
+</html>
